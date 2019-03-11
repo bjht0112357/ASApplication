@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+        <variable
+            name="userMVVM"
+            type="org.com.asapplication.mvvm.model.UserMVVM"/>
+        <variable
+            name="viewModel"
+            type="org.com.asapplication.mvvm.viewmodel.QueryWeatherViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={userMVVM.userName}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@={userMVVM.userPassword}" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{userMVVM.imgUrl}" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_20">
+
+            <Button
+                android:id="@+id/btn_query_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:enabled="@{viewModel.loading ? false : true}"
+                android:onClick="@{() -> viewModel.queryWeather()}"
+                android:text="获取天气" />
+
+            <RelativeLayout
+                android:id="@+id/vg_weather_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_query_weather"
+                android:layout_marginTop="@dimen/dp_20"
+                android:visibility="@{viewModel.loadingSuccess ? View.VISIBLE : View.GONE}">
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="城市"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_city_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_city"
+                    android:layout_toRightOf="@id/tv_city"
+                    android:text="@{viewModel.city}" />
+
+                <TextView
+                    android:id="@+id/tv_city_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_city"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="城市编号"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_city_id_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_city_id"
+                    android:layout_toRightOf="@id/tv_city_id"
+                    android:text="@{viewModel.cityId}" />
+
+                <TextView
+                    android:id="@+id/tv_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_city_id"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="温度"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_temp1_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_temp"
+                    android:layout_toRightOf="@id/tv_temp"
+                    android:text="@{viewModel.temp1}" />
+
+                <TextView
+                    android:id="@+id/tv_tilde"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_temp"
+                    android:layout_toRightOf="@id/tv_temp1_value"
+                    android:text="温度" />
+
+                <TextView
+                    android:id="@+id/tv_temp2_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_temp"
+                    android:layout_toRightOf="@id/tv_tilde"
+                    android:text="@{viewModel.temp2}" />
+
+                <TextView
+                    android:id="@+id/tv_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_temp"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="天气"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_weather_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_weather"
+                    android:layout_toRightOf="@id/tv_weather"
+                    android:text="@{viewModel.weather}" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_weather"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="发布时间"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_time_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_time"
+                    android:layout_toRightOf="@id/tv_time"
+                    android:text="@{viewModel.time}" />
+
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/pb_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
+
+            <TextView
+                android:id="@+id/tv_query_failure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="查找失败"
+                android:visibility="@{viewModel.loadingFailure ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>
