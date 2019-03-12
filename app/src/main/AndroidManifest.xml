@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".rxjava.RxtestActivity" />
-        <activity android:name=".picasso.PicassoActivity"></activity>
+        <activity android:name=".picasso.PicassoActivity" />
         <activity android:name=".xrecycleview.XRecycleviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".mvp.activity.TestMVPActivity" />
-        <activity android:name=".mvvm.view.MvvmTestActivity"></activity>
+        <activity android:name=".mvvm.view.MvvmTestActivity" />
+        <activity android:name=".GIthubTestActivity"></activity>
     </application>
 
 </manifest>
