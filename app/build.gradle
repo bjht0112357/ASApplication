@@ -11,14 +11,40 @@ android {
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
-
-
-
+    signingConfigs {
+        release {
+            if (project.hasProperty("RELEASE_STORE_FILE")) {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
+        debug {
+            if (project.hasProperty("DEBUG_STORE_FILE")) {
+                storeFile file(DEBUG_STORE_FILE)
+                storePassword DEBUG_STORE_PASSWORD
+                keyAlias DEBUG_KEY_ALIAS
+                keyPassword DEBUG_KEY_PASSWORD
+            }
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (project.hasProperty("RELEASE_STORE_FILE")) {
+                signingConfig signingConfigs.release
+            }
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (project.hasProperty("DEBUG_STORE_FILE")) {
+                signingConfig signingConfigs.debug
+            }
         }
     }
     dataBinding {
@@ -28,6 +54,11 @@ android {
     compileOptions {
         sourceCompatibility org.gradle.api.JavaVersion.VERSION_1_8
         targetCompatibility org.gradle.api.JavaVersion.VERSION_1_8
+    }
+}
+repositories{
+    flatDir {
+        dirs 'libs'
     }
 }
 
@@ -63,6 +94,7 @@ dependencies {
         exclude module: 'animated-vector-drawable'
 
     }
-
+    /*高德地图AMap3DMap_AMapNavi_AMapSearch_AMapTrack_AMapLocation_aar*/
+    implementation(name:'AMap', ext:'aar')
     implementation project(path: ':utilslibrary')
 }
