@@ -5,9 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import org.com.asapplication.R;
-import org.com.asapplication.rxjava.bean.Translation;
-import org.com.asapplication.rxjava.network.ApiRequest;
-import org.com.asapplication.rxjava.utils.Response;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,16 +20,16 @@ public class RxtestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rxtest);
         ButterKnife.bind(this);
         setTitle("RxtestActivity");
-        ApiRequest.getMessage("fy", "auto", "auto", "hello%20world", new Response<Translation>() {
-            @Override
-            public void onError(String error) {
-
-            }
-
-            @Override
-            public void onResponse(Translation translation) {
-                tvOut.setText(translation.getContent().getOut());
-            }
-        });
+//        ApiRequest.getMessage("fy", "auto", "auto", "hello%20world", new Response<Translation>() {
+//            @Override
+//            public void onError(String error) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Translation translation) {
+//                tvOut.setText(translation.getContent().getOut());
+//            }
+//        });
     }
 }
