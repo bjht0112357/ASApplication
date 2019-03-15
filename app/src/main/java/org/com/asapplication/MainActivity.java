@@ -9,8 +9,11 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @BindView(R.id.imageView)
     ImageView imageView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setOnClickListener(v -> {
 
         });
+//        vc.isEqualsIgnoreCase()
         // 1.1使用匿名内部类
         new Thread(() -> System.out.println("Hello world !")).start();
     }

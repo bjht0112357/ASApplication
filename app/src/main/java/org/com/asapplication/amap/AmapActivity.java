@@ -10,15 +10,16 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.CameraUpdate;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
@@ -73,7 +74,41 @@ public class AmapActivity extends AppCompatActivity {
         }else {
             startLocaion();
         }
+
+//        getScreenCenterLatLng();
+        getDistance();
     }
+
+    /**
+     * 获取两个经纬点的距离
+     * @return distance
+     */
+    private float getDistance() {
+        LatLng latlngA = new LatLng(24.4928533,118.177800);
+        LatLng latlngB = new LatLng(24.8928533,118.877800);
+        float distance = AMapUtils.calculateLineDistance(latlngA, latlngB);
+        AppLogger.e("distance="+distance+"米");
+        return distance;
+    }
+
+    /**
+     * 获取屏幕中心点的经纬度
+     */
+    private void getScreenCenterLatLng() {
+        aMap.setOnCameraChangeListener(new AMap.OnCameraChangeListener() {
+            @Override
+            public void onCameraChange(CameraPosition cameraPosition) {
+                LatLng target = cameraPosition.target;
+                AppLogger.e("target latitude" +target.latitude+"target longitude" +target.longitude);
+            }
+
+            @Override
+            public void onCameraChangeFinish(CameraPosition cameraPosition) {
+
+            }
+        });
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -130,13 +165,10 @@ public class AmapActivity extends AppCompatActivity {
     private Marker marker;
     private void addMarker(){
         //地图触摸事件
-        aMap.setOnMapTouchListener(new AMap.OnMapTouchListener() {
-            @Override
-            public void onTouch(MotionEvent motionEvent) {
-                if (aMap != null && marker != null) {
-                    if (marker.isInfoWindowShown()){
-                        marker.hideInfoWindow();
-                    }
+        aMap.setOnMapTouchListener(motionEvent -> {
+            if (aMap != null && marker != null) {
+                if (marker.isInfoWindowShown()){
+                    marker.hideInfoWindow();
                 }
             }
         });

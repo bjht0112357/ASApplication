@@ -1,8 +1,10 @@
 package org.com.asapplication.rxjava.utils;
 
 
+import org.com.asapplication.rxjava.constants.AppConfig;
+
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -12,23 +14,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtils {
     private Retrofit mRetrofit;
-    private String baseUrl;
-    private static RetrofitUtils mRetrofitManager;
-    private RetrofitUtils(String baseUrl){
-        this.baseUrl=baseUrl;
+    private static RetrofitUtils mRetrofitUtils;
+    private RetrofitUtils(){
         initRetrofit();
     }
-    public static synchronized RetrofitUtils getInstance(String baseUrl){
-        if (mRetrofitManager == null){
-            mRetrofitManager = new RetrofitUtils(baseUrl);
+    public static synchronized RetrofitUtils getInstance(){
+        if (mRetrofitUtils == null){
+            mRetrofitUtils = new RetrofitUtils();
         }
-        return mRetrofitManager;
+        return mRetrofitUtils;
     }
     private void initRetrofit() {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(AppConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(OkHttp3Utils.getOkHttpClient())
                 .build();
     }

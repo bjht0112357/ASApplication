@@ -6,17 +6,18 @@ import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import org.com.asapplication.MyApplication;
+import org.com.asapplication.apputils.AppLogger;
 
-import rx.Subscriber;
+import io.reactivex.observers.DisposableObserver;
 
 /**
- * Class Des:自定义Subscriber捕获异常及返回方法封装{@link #onError}，{@link #onResponse}
+ * Class Des:自定义ResponseDisposableObserver捕获异常及返回方法封装{@link #onError}，{@link #onResponse}
  * Created by bjh on 2018/3/19.
  */
 
-public abstract class ResponseSubscriber<T> extends Subscriber<T> {
+public abstract class Response<T> extends DisposableObserver<T> {
 
-    public ResponseSubscriber() {
+    public Response() {
     }
 
     @Override
@@ -26,29 +27,27 @@ public abstract class ResponseSubscriber<T> extends Subscriber<T> {
 
         if (!isNetworkConnected()) {
             Toast.makeText(MyApplication.getInstance().getApplicationContext(), "当前网络不可用，请检查网络情况", Toast.LENGTH_SHORT).show();
-            if (!isUnsubscribed()) {
-                unsubscribe();
-            }
             return;
         }
     }
 
     @Override
-    public void onError(Throwable e) {
-        if(e instanceof Exception){
-            //访问获得对应的Exception
-            onError(ExceptionHandle.handleException(e));
-        }else {
-            //将Throwable 和 未知错误的status code返回
-            onError(new ExceptionHandle.ResponeThrowable(e,ExceptionHandle.UNKNOWN));
-        }
+    public void onComplete() {
     }
-    public abstract void onError(ExceptionHandle.ResponeThrowable responeThrowable);
-    public abstract void onResponse(T t);
 
     @Override
-    public void onCompleted() {
+    public void onError(Throwable e) {
+        AppLogger.e(e.getMessage());
+        if(e instanceof Exception){
+            //访问获得对应的Exception
+            onError(ExceptionHandle.handleException(e).getMessage());
+        }else {
+            //将Throwable 和 未知错误的status code返回
+            onError(new ExceptionHandle.ResponeThrowable(e,ExceptionHandle.UNKNOWN).getMessage());
+        }
     }
+    public abstract void onError(String error);
+    public abstract void onResponse(T t);
 
     @Override
     public void onNext(T t) {

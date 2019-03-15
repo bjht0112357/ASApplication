@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--format详解-->
+    <!--1、reference :参考某一资源ID-->
+    <!--2、color：颜色值-->
+    <!--3、boolean：布尔值-->
+    <!--4、dimension：尺寸值-->
+    <!--5、float：浮点值-->
+    <!--6、integer：整形值-->
+    <!--7、string：字符串-->
+    <!--8、fraction：百分数-->
+    <!--9、enum：枚举值-->
+    <!--10、flag：位或运算-->
+    <declare-styleable name="VerifyCode">
+        <attr name="codeTextSize" format="dimension"/>
+        <attr name="codeBackground" format="color"/>
+        <attr name="codeLength" format="integer"/>
+        <attr name="isContainChar" format="boolean"/>
+        <attr name="pointNum" format="integer"/>
+        <attr name="linNum" format="integer"/>
+    </declare-styleable>
+</resources>

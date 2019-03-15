@@ -33,6 +33,7 @@ public class OkHttp3Utils {
         if (null == mOkHttpClient) {
             mOkHttpClient = new OkHttpClient.Builder()
                     .addInterceptor(new LoggingInterceptor())
+//                    .addInterceptor(new HeaderInterceptor())
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)

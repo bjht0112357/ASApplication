@@ -5,8 +5,7 @@ import com.utils.library.presenter.BaseMvpPresenter;
 import org.com.asapplication.mvp.model.TestMVPModel;
 import org.com.asapplication.mvp.model.User;
 import org.com.asapplication.mvp.view.TestMVPView;
-import org.com.asapplication.rxjava.utils.ExceptionHandle;
-import org.com.asapplication.rxjava.utils.ResponseSubscriber;
+import org.com.asapplication.rxjava.utils.Response;
 
 /**
  *
@@ -22,10 +21,10 @@ public class TestMVPPresenter extends BaseMvpPresenter<TestMVPView<User>> {
     public void requestNetDatas() {
         if (null != getMvpView()) {
             getMvpView().showProgressDialog();
-            mvpModel.request(new ResponseSubscriber<User>() {
+            mvpModel.request(new Response<User>() {
                 @Override
-                public void onError(ExceptionHandle.ResponeThrowable responeThrowable) {
-                    getMvpView().loadFailure(responeThrowable.message);
+                public void onError(String error) {
+                    getMvpView().loadFailure(error);
                     getMvpView().hideProgressDialog();
 
                 }
