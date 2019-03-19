@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 //        vc.isEqualsIgnoreCase()
-        
+
         // 1.1使用匿名内部类
         new Thread(() -> System.out.println("Hello world !")).start();
     }
