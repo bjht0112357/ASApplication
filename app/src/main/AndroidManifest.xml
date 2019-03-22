@@ -31,11 +31,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".rxjava.RxtestActivity">
-
-        </activity>
+        <activity android:name=".rxjava.RxtestActivity"></activity>
         <activity android:name=".picasso.PicassoActivity" />
-        <activity android:name=".xrecycleview.XRecycleviewActivity"></activity>
+        <activity android:name=".xrecycleview.XRecycleviewActivity" />
         <activity android:name=".mvp.activity.TestMVPActivity" />
         <activity android:name=".mvvm.view.MvvmTestActivity" />
         <!-- 高德地图 -->
@@ -43,8 +41,15 @@
             android:name="com.amap.api.v2.apikey"
             android:value="5fc2f216e5da29fb925d6d334601b852" />
 
-        <activity android:name=".amap.AmapActivity"></activity>
+        <activity android:name=".amap.AmapActivity" />
         <activity android:name=".rxBus.RxBusBindingTestActivity">
+
+        </activity>
+        <activity android:name=".rxBus.RxBusSendActivity"></activity>
+        <activity android:name=".dbflow.FlowDBDemoActivity">
+        </activity>
+
+        <activity android:name=".greendao.GreenDBDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -52,9 +57,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".rxBus.RxBusSendActivity">
 
-        </activity>
     </application>
 
 </manifest>

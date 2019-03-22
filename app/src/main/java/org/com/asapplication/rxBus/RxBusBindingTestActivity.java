@@ -39,13 +39,9 @@ public class RxBusBindingTestActivity extends AppCompatActivity {
         RxView.clicks(btnGo)
                 .throttleFirst(5, TimeUnit.SECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .doOnNext(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        Intent i =new Intent(RxBusBindingTestActivity.this,RxBusSendActivity.class);
-                        startActivity(i);
-                    }
-                })
+                .doOnNext(
+                        o ->  startActivity(new Intent(RxBusBindingTestActivity.this,RxBusSendActivity.class))
+                )
                 .subscribe();
     }
     @Override
