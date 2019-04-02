@@ -4,17 +4,19 @@ import android.app.Application;
 
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import org.litepal.LitePal;
+
 /**
  * Class Des:
  * Created by bjh on 2018/3/6.
  */
-
 public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         FlowManager.init(this);
+        LitePal.initialize(this);
     }
 
     private static MyApplication instance;

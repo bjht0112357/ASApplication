@@ -11,7 +11,11 @@ import org.com.asapplication.mvvm.model.UserMVVM;
 import org.com.asapplication.mvvm.viewmodel.QueryWeatherViewModel;
 
 public class MvvmTestActivity extends AppCompatActivity {
-
+//    Null Coalescing 运算符
+//    android:text="@{user.displayName ?? user.lastName}"
+//    就等价于
+//
+//    android:text="@{user.displayName != null ? user.displayName : user.lastName}"
     private ActivityMvvmTestBinding viewDataBinding;
     //当数据有变化时，可以通知更新数据
     private MutableLiveData<String> text = null;

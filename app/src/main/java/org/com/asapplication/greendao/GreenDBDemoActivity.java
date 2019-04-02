@@ -37,7 +37,7 @@ public class GreenDBDemoActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flow_dbdemo);
+        setContentView(R.layout.activity_dbdemo);
         setTitle("GreenDBDemoActivity");
         ButterKnife.bind(this);
         btnInsert.setOnClickListener(this);

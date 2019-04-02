@@ -41,7 +41,7 @@ public class FlowDBDemoActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flow_dbdemo);
+        setContentView(R.layout.activity_dbdemo);
         ButterKnife.bind(this);
         btnInsert.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);

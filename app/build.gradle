@@ -30,7 +30,6 @@ android {
             }
         }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -56,6 +55,7 @@ android {
         sourceCompatibility org.gradle.api.JavaVersion.VERSION_1_8
         targetCompatibility org.gradle.api.JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '28.0.3'
 }
 repositories {
     flatDir {
@@ -87,7 +87,6 @@ dependencies {
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding-support-v4:2.0.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
-
     /*rotrofit*/
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
@@ -108,11 +107,13 @@ dependencies {
     }
     /*DBFlow数据库*/
     annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.1"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-core:4.2.1"
-    implementation "com.github.Raizlabs.DBFlow:dbflow:4.2.1"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:4.2.1"
+    implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.1'
+    implementation 'com.github.Raizlabs.DBFlow:dbflow:4.2.1'
+    implementation 'com.github.Raizlabs.DBFlow:dbflow-sqlcipher:4.2.1'
     /*greendao数据库*/
     implementation 'org.greenrobot:greendao:3.2.0'
+    /*LitePal数据库*/
+    implementation 'org.litepal.android:java:3.0.0'
     /*高德地图AMap3DMap_AMapNavi_AMapSearch_AMapTrack_AMapLocation_aar*/
     implementation(name: 'AMap', ext: 'aar')
     implementation project(path: ':utilslibrary')
