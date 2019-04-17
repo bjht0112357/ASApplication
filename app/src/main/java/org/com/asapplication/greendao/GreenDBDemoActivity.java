@@ -49,14 +49,20 @@ public class GreenDBDemoActivity extends AppCompatActivity implements View.OnCli
 
     }
     private void insert(){
-        dayStep = new DayStep();
-        dayStep.setId(100);
-        dayStep.setDate("2019.3.22");
-        dayStep.setSportId(100L);
-        dayStep.setStep(100000);
-        //会检查是否已有该主键的数据有的话会报错
-        //long l = daoSession.insert(dayStep);
-        long l = daoSession.insertOrReplace(dayStep);
+//        dayStep = new DayStep();
+//        dayStep.setId(100);
+//        dayStep.setDate("2019.3.22");
+//        dayStep.setSportId(100L);
+//        dayStep.setStep(100000);
+//        //会检查是否已有该主键的数据有的话会报错
+//        //long l = daoSession.insert(dayStep);
+//        long l = daoSession.insertOrReplace(dayStep);
+//        tvdb.setText("insert() l="+l);
+        GreenDaoEntity greenDaoEntity =new GreenDaoEntity();
+        greenDaoEntity.setDate("2019.3.22");
+        greenDaoEntity.setSportId(100L);
+        greenDaoEntity.setStep(100000);
+        long l = daoSession.insertOrReplace(greenDaoEntity);
         tvdb.setText("insert() l="+l);
 
     }

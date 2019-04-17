@@ -31,7 +31,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".rxjava.RxtestActivity"></activity>
+        <activity android:name=".rxjava.RxtestActivity" />
         <activity android:name=".picasso.PicassoActivity" />
         <activity android:name=".xrecycleview.XRecycleviewActivity" />
         <activity android:name=".mvp.activity.TestMVPActivity" />
@@ -42,17 +42,10 @@
             android:value="5fc2f216e5da29fb925d6d334601b852" />
 
         <activity android:name=".amap.AmapActivity" />
-        <activity android:name=".rxBus.RxBusBindingTestActivity">
-
-        </activity>
-        <activity android:name=".rxBus.RxBusSendActivity"></activity>
-        <activity android:name=".dbflow.FlowDBDemoActivity">
-        </activity>
-
+        <activity android:name=".rxBus.RxBusBindingTestActivity"></activity>
+        <activity android:name=".rxBus.RxBusSendActivity" />
+        <activity android:name=".dbflow.FlowDBDemoActivity"></activity>
         <activity android:name=".greendao.GreenDBDemoActivity">
-
-        </activity>
-        <activity android:name=".dblitepal.LitepalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -60,7 +53,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".dblitepal.LitepalActivity">
 
+        </activity>
+        <activity
+            android:name=".design.ScrollingActivity"
+            android:label="@string/title_activity_scrolling">
+
+        </activity>
     </application>
 
 </manifest>
