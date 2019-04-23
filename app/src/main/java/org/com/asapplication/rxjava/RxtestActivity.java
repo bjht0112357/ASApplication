@@ -8,6 +8,7 @@ import android.widget.TextView;
 import org.com.asapplication.R;
 import org.com.asapplication.apputils.AppLogger;
 import org.com.asapplication.rxjava.bean.Translation;
+import org.com.asapplication.rxjava.network.ApiLifecycleRequest;
 import org.com.asapplication.rxjava.network.ApiRequest;
 import org.com.asapplication.rxjava.utils.Response;
 
@@ -90,7 +91,6 @@ public class RxtestActivity extends AppCompatActivity {
 /*===========条件操作符==========*/
 
 
-
     }
 
     /**
@@ -102,7 +102,7 @@ public class RxtestActivity extends AppCompatActivity {
         observable1.startWith(observable2)
                 .doOnNext(new Consumer() {
                     @Override
-                    public void accept(Object o) throws Exception {
+                    public void accept(Object o) {
                         AppLogger.e("startWith " + String.valueOf(o));
                     }
                 })
@@ -115,12 +115,12 @@ public class RxtestActivity extends AppCompatActivity {
     private void all() {
         Observable.just(1, 3, 5).all(new Predicate<Integer>() {
             @Override
-            public boolean test(Integer integer) throws Exception {
+            public boolean test(Integer integer) {
                 return integer % 2 == 1;
             }
         }).subscribe(new Consumer<Boolean>() {// Consumer是简易版的Observer，这里调用的只接收onNext方法
             @Override
-            public void accept(Boolean aBoolean) throws Exception {
+            public void accept(Boolean aBoolean) {
                 AppLogger.e("all " + aBoolean);
             }
         });
@@ -135,13 +135,13 @@ public class RxtestActivity extends AppCompatActivity {
         //输出结果为1 3
         Observable.just(1, 3, 5).takeUntil(new Predicate<Integer>() {
             @Override
-            public boolean test(Integer integer) throws Exception {
+            public boolean test(Integer integer) {
                 //当大于2时就停止发送，但当前的还是会发送如 打印 3
                 return integer > 2;
             }
         }).subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(Integer integer) throws Exception {
+            public void accept(Integer integer) {
                 AppLogger.e("takeUntil " + integer);
             }
         });
@@ -155,12 +155,12 @@ public class RxtestActivity extends AppCompatActivity {
     private void takeWhile() {
         Observable.just(1, 2, 3, 4, 2).takeWhile(new Predicate<Integer>() {
             @Override
-            public boolean test(Integer integer) throws Exception {
+            public boolean test(Integer integer) {
                 return integer < 3;
             }
         }).doOnNext(new Consumer<Integer>() {
             @Override
-            public void accept(Integer integer) throws Exception {
+            public void accept(Integer integer) {
                 AppLogger.e("takeWhile " + integer);
             }
         }).subscribe();
@@ -174,7 +174,7 @@ public class RxtestActivity extends AppCompatActivity {
                 .skipUntil(Observable.intervalRange(20, 20, 1000, 100, TimeUnit.MILLISECONDS))
                 .doOnNext(new Consumer<Long>() {
                     @Override
-                    public void accept(Long aLong) throws Exception {
+                    public void accept(Long aLong) {
                         AppLogger.e("skipUntil " + aLong);
                     }
                 })
@@ -193,12 +193,12 @@ public class RxtestActivity extends AppCompatActivity {
     private void skipWhile() {
         Observable.just(1, 2, 3, 4, 3, 2).skipWhile(new Predicate<Integer>() {
             @Override
-            public boolean test(Integer integer) throws Exception {
+            public boolean test(Integer integer) {
                 return integer < 3;
             }
         }).doOnNext(new Consumer<Integer>() {
             @Override
-            public void accept(Integer integer) throws Exception {
+            public void accept(Integer integer) {
                 AppLogger.e("skipWhile " + integer);
             }
         }).subscribe();
@@ -225,7 +225,7 @@ public class RxtestActivity extends AppCompatActivity {
         Observable.just("one","two").contains("two")
                 .doOnEvent(new BiConsumer<Boolean, Throwable>() {
                     @Override
-                    public void accept(Boolean aBoolean, Throwable throwable) throws Exception {
+                    public void accept(Boolean aBoolean, Throwable throwable) {
                         AppLogger.e("contains " + aBoolean);
                     }
                 }).subscribe();
@@ -237,7 +237,7 @@ public class RxtestActivity extends AppCompatActivity {
     private void isEmpty(){
         Observable.create(new ObservableOnSubscribe < Integer > () {
             @Override
-            public void subscribe(ObservableEmitter < Integer > e) throws Exception {
+            public void subscribe(ObservableEmitter < Integer > e) {
                     //有e.onNext(...);结果为false 否则为true
 //                    e.onNext(1);
                     e.onComplete();
@@ -246,7 +246,7 @@ public class RxtestActivity extends AppCompatActivity {
                 .isEmpty()
                 .doOnEvent(new BiConsumer<Boolean, Throwable>() {
                     @Override
-                    public void accept(Boolean aBoolean, Throwable throwable) throws Exception {
+                    public void accept(Boolean aBoolean, Throwable throwable) {
                         AppLogger.e("isEmpty " + aBoolean);
                     }
                 })
@@ -264,7 +264,7 @@ public class RxtestActivity extends AppCompatActivity {
         Observable.amb(list)
                 .doOnNext(new Consumer<Long>() {
                     @Override
-                    public void accept(Long aLong) throws Exception {
+                    public void accept(Long aLong) {
                         AppLogger.e("amb " + aLong);
                     }
                 })
@@ -312,13 +312,13 @@ public class RxtestActivity extends AppCompatActivity {
         Observable.just(1, 2, 3, 4, 5, 6)//创建了一个有6个数字的被观察者
                 .filter(new Predicate<Integer>() {//添加筛选器
                     @Override
-                    public boolean test(Integer integer) throws Exception {//对每个事件进行筛选，返回true的保留
+                    public boolean test(Integer integer) {//对每个事件进行筛选，返回true的保留
                         return integer % 2 == 0;
                     }
                 })
                 .doOnNext(new Consumer<Integer>() {
                     @Override
-                    public void accept(Integer integer) throws Exception {
+                    public void accept(Integer integer) {
                         AppLogger.e("filter " + integer);
                     }
                 })
@@ -329,7 +329,7 @@ public class RxtestActivity extends AppCompatActivity {
         Observable.just("one", "two").elementAt(1)
                 .doOnEvent(new BiConsumer<String, Throwable>() {
                     @Override
-                    public void accept(String s, Throwable throwable) throws Exception {
+                    public void accept(String s, Throwable throwable) {
                         AppLogger.e("elementAt " + s);
                     }
                 })
@@ -339,12 +339,12 @@ public class RxtestActivity extends AppCompatActivity {
                 .ignoreElements()
                 .doOnError(new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         AppLogger.e("ignoreElements " + throwable.getMessage());
                     }
                 }).doOnComplete(new Action() {
             @Override
-            public void run() throws Exception {
+            public void run() {
                 AppLogger.e("ignoreElements Complete");
             }
         })
@@ -381,7 +381,7 @@ public class RxtestActivity extends AppCompatActivity {
         //无参版本(只显示不重复数据) 就是内部实现了的keySelector通过生成的key就是value本身
         Observable.just(1, 3, 1, 5, 6, 3).distinct().subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(Integer integer) throws Exception {
+            public void accept(Integer integer) {
                 AppLogger.e("distinct " + integer);
             }
         });
@@ -438,17 +438,17 @@ public class RxtestActivity extends AppCompatActivity {
         });
         Observable.fromCallable(new Callable<List<String>>() {
             @Override
-            public List<String> call() throws Exception {
+            public List<String> call() {
                 return Arrays.asList("hello", "gaga");
             }
         }).subscribe(new Consumer<List<String>>() {
             @Override
-            public void accept(List<String> strings) throws Exception {
+            public void accept(List<String> strings) {
                 AppLogger.e(strings.toString());
             }
         });
 
-        Observable.fromIterable(Arrays.<String>asList("one", "two", "three"))
+        Observable.fromIterable(Arrays.asList("one", "two", "three"))
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -579,12 +579,12 @@ public class RxtestActivity extends AppCompatActivity {
         //合并事件
         Observable.zip(observable1, observable2, new BiFunction<Integer, Integer, String>() {
             @Override
-            public String apply(Integer integer, Integer integer2) throws Exception {
+            public String apply(Integer integer, Integer integer2) {
                 return String.valueOf(integer + integer2);
             }
         }).subscribe(new Consumer<String>() {
             @Override
-            public void accept(String s) throws Exception {
+            public void accept(String s) {
                 AppLogger.e("zip: " + s);
             }
         });
@@ -626,7 +626,7 @@ public class RxtestActivity extends AppCompatActivity {
         Flowable sourceFlowable = Flowable.just(Flowable.just(8,10, 11),Flowable.just(5,10, 11), Flowable.just(10,20, 30));
         Flowable.switchOnNext(sourceFlowable).subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(Integer value) throws Exception {
+            public void accept(Integer value) {
                 System.out.println("value:" + value);
             }
         });
@@ -634,7 +634,7 @@ public class RxtestActivity extends AppCompatActivity {
         Observable.switchOnNext(just)
                 .doOnNext(new Consumer<Integer>() {
                     @Override
-                    public void accept(Integer value) throws Exception {
+                    public void accept(Integer value) {
                         System.out.println("RxBusBindingTest: " + value);
                     }
                 })
@@ -730,7 +730,7 @@ public class RxtestActivity extends AppCompatActivity {
                 })
                 .doOnEvent(new BiConsumer<Integer, Throwable>() {
                     @Override
-                    public void accept(Integer integer, Throwable throwable) throws Exception {
+                    public void accept(Integer integer, Throwable throwable) {
                         AppLogger.e("reduce " + String.valueOf(integer));
                     }
                 })
@@ -739,7 +739,7 @@ public class RxtestActivity extends AppCompatActivity {
     private void ablObserver() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<String> emitter) {
                 //被观察者执行动作
                 emitter.onNext("emitter1");
                 emitter.onNext("emitter2");
@@ -784,14 +784,14 @@ public class RxtestActivity extends AppCompatActivity {
         Observable.just("item1", "item2", "item3")
                 .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(String s) throws Exception {
+                    public void accept(String s) {
                         AppLogger.e(s);
                     }
                 });
     }
 
     private void getNetworkData() {
-        ApiRequest.getMessage("fy", "auto", "auto", "hello%20world", new Response<Translation>() {
+        ApiLifecycleRequest.getInstance().getMessage(this,"fy", "auto", "auto", "hello%20world", new Response<Translation>() {
             @Override
             public void onError(String error) {
             }

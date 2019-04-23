@@ -101,7 +101,7 @@ public class FlowDBDemoActivity extends AppCompatActivity implements View.OnClic
     private void rxDB() {
         Observable.create(new ObservableOnSubscribe<List<UserModel>>() {
             @Override
-            public void subscribe(ObservableEmitter<List<UserModel>> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<List<UserModel>> emitter) {
                 List<UserModel>  userModels = SQLite.select().from(UserModel.class).queryList();
                 emitter.onNext(userModels);
                 emitter.onComplete();

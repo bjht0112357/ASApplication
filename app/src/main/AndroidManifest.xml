@@ -3,22 +3,15 @@
     package="org.com.asapplication">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <!-- 允许程序打开网络套接字 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 允许程序设置内置sd卡的写权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 允许程序获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 允许程序访问WiFi网络信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- 允许程序读写手机状态和身份 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -27,25 +20,23 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".rxjava.RxtestActivity" />
-        <activity android:name=".picasso.PicassoActivity" />
-        <activity android:name=".xrecycleview.XRecycleviewActivity" />
-        <activity android:name=".mvp.activity.TestMVPActivity" />
-        <activity android:name=".mvvm.view.MvvmTestActivity" />
-        <!-- 高德地图 -->
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="5fc2f216e5da29fb925d6d334601b852" />
+        <activity android:name=".animation.FrameAnimationActivity"></activity>
 
-        <activity android:name=".amap.AmapActivity" />
-        <activity android:name=".rxBus.RxBusBindingTestActivity"></activity>
-        <activity android:name=".rxBus.RxBusSendActivity" />
-        <activity android:name=".dbflow.FlowDBDemoActivity"></activity>
-        <activity android:name=".greendao.GreenDBDemoActivity">
+        <service
+            android:name=".myservice.BindService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".myservice.TestServiceActivity" />
+
+        <service
+            android:name=".myservice.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -53,14 +44,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dblitepal.LitepalActivity">
+        <activity android:name=".rxjava.RxtestActivity" />
+        <activity android:name=".picasso.PicassoActivity" />
+        <activity android:name=".xrecycleview.XRecycleviewActivity" />
+        <activity android:name=".mvp.activity.TestMVPActivity" />
+        <activity android:name=".mvvm.view.MvvmTestActivity" /> <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="5fc2f216e5da29fb925d6d334601b852" />
 
-        </activity>
+        <activity android:name=".amap.AmapActivity" />
+        <activity android:name=".rxBus.RxBusBindingTestActivity" />
+        <activity android:name=".rxBus.RxBusSendActivity" />
+        <activity android:name=".dbflow.FlowDBDemoActivity" />
+        <activity android:name=".greendao.GreenDBDemoActivity" />
+        <activity android:name=".dblitepal.LitepalActivity" />
+        <activity
+            android:name=".BMIViewActivity"
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".design.ScrollingActivity"
-            android:label="@string/title_activity_scrolling">
-
-        </activity>
+            android:label="@string/title_activity_scrolling" />
+        <activity android:name=".MemoryLeakActivity" />
+        <activity android:name=".autodisposelifecycle.RxLifecycleActivity" />
     </application>
 
 </manifest>

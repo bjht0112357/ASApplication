@@ -34,7 +34,10 @@ public class XRecycleviewActivity extends AppCompatActivity {
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallGridPulse);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotate);
         mRecyclerView.setAdapter(xRecycleViewAdapter);
-
+        new Handler().postDelayed(() -> {
+            initData();
+            mRecyclerView.refreshComplete();
+        },2000);
         //允许刷新，加载更多
         mRecyclerView.setPullRefreshEnabled(true);
         mRecyclerView.setLoadingMoreEnabled(true);

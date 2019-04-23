@@ -31,7 +31,7 @@ public class RxBusBindingTestActivity extends AppCompatActivity {
         //https://blog.csdn.net/weixin_41307234/article/details/78962976
         Disposable register = RxBus.getInstance().register(RxBusMessage.class, new Consumer<RxBusMessage>() {
             @Override
-            public void accept(RxBusMessage rxBusMessage) throws Exception {
+            public void accept(RxBusMessage rxBusMessage) {
                 tvGetMessage.setText(rxBusMessage.getType());
             }
         });

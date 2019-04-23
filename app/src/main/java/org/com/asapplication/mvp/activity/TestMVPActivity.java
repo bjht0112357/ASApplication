@@ -8,7 +8,15 @@ import org.com.asapplication.mvp.presenter.TestMVPPresenter;
 import org.com.asapplication.mvp.view.TestMVPView;
 
 /**
- *
+ *易于维护
+
+ 易于测试
+
+ 松耦合度
+
+ 复用性高
+
+ 健壮稳定
  *
  */
 public class TestMVPActivity extends BaseActivity<TestMVPView<User>, TestMVPPresenter> implements TestMVPView<User> {
