@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.squareup.leakcanary.RefWatcher;
+import com.tencent.qcloud.uikit.BaseUIKitConfigs;
+import com.tencent.qcloud.uikit.TUIKit;
 
 import org.litepal.LitePal;
 
@@ -27,6 +29,7 @@ public class MyApplication extends Application {
 //            return;
 //        }
 //        LeakCanary.install(this);
+        TUIKit.init(this,	1400202492, BaseUIKitConfigs.getDefaultConfigs());
     }
 
     private static MyApplication instance;

@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".animation.FrameAnimationActivity"></activity>
+        <activity android:name=".animation.FrameAnimationActivity" />
 
         <service
             android:name=".myservice.BindService"
@@ -67,6 +67,10 @@
             android:label="@string/title_activity_scrolling" />
         <activity android:name=".MemoryLeakActivity" />
         <activity android:name=".autodisposelifecycle.RxLifecycleActivity" />
+        <activity android:name=".ConstraintLayoutActivity" />
+        <activity android:name=".tim.LoginTimActivity" />
+        <activity android:name=".tim.LoginActivity" />
+        <activity android:name=".tim.TimActivity"></activity>
     </application>
 
 </manifest>

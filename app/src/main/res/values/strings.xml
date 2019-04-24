@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ASApplication</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="constraint">至此可以看出对constraint的理解其实可以看成是像两个弹簧一样如</string>
 </resources>

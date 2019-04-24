@@ -31,4 +31,12 @@
         android:text="帧动画实现,防OOM"
         android:visibility="gone"
         />
+    <TextView
+        android:id="@+id/tvLoginTim"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center_vertical"
+        android:text="腾讯云通信"
+        android:visibility="visible"
+        />
 </LinearLayout>
