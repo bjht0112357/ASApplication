@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="127dp"
@@ -60,7 +61,8 @@
                     android:layout_width="17dp"
                     android:layout_height="18dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/inforwindow_navigation"/>
+                    android:src="@mipmap/inforwindow_navigation"
+                    tools:ignore="ContentDescription" />
                 <TextView
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
@@ -87,7 +89,8 @@
                     android:layout_width="19dp"
                     android:layout_height="18dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/inforwindow_call"/>
+                    android:src="@mipmap/inforwindow_call"
+                    tools:ignore="ContentDescription" />
                 <TextView
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"

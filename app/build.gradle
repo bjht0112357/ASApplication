@@ -125,8 +125,9 @@ dependencies {
     implementation 'com.uber.autodispose:autodispose:0.6.1'
     implementation 'com.uber.autodispose:autodispose-android-archcomponents:0.6.1'
     implementation 'junit:junit:4.12'
+//    腾讯Im
     implementation(name: 'imsdk-4.2.52', ext: 'aar')
     implementation(name: 'tuikit-4.2.52', ext: 'aar')
-
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
 
 }

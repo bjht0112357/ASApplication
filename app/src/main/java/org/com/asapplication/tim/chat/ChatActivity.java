@@ -1,4 +1,4 @@
-package com.tencent.qcloud.uipojo.chat;
+package org.com.asapplication.tim.chat;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.tencent.qcloud.tim.tuikit.R;
 import com.tencent.qcloud.uikit.business.chat.c2c.model.C2CChatManager;
 import com.tencent.qcloud.uikit.business.chat.group.model.GroupChatManager;
 import com.tencent.qcloud.uikit.common.BaseFragment;
-import com.tencent.qcloud.uipojo.utils.Constants;
+
+import org.com.asapplication.R;
+import org.com.asapplication.tim.utils.Constants;
 
 /**
  * Created by valxehuang on 2018/7/18.

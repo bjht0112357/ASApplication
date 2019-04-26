@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.utils.library.utils.AppUtils;
+
 import org.com.asapplication.animation.FrameAnimationActivity;
 import org.com.asapplication.myservice.TestServiceActivity;
-import org.com.asapplication.tim.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         tvMemoryLeak.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,MemoryLeakActivity.class)));
         tvService.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, TestServiceActivity.class)));
         tvFrameAnimation.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, FrameAnimationActivity.class)));
-        tvLoginTim.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
+//        tvLoginTim.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
+        tvLoginTim.setOnClickListener(v -> AppUtils.copy(getApplication(),"测试复制"));
     }
 }

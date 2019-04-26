@@ -1,4 +1,4 @@
-package com.tencent.qcloud.uipojo.utils;
+package org.com.asapplication.tim.utils;
 
 /**
  * Created by Administrator on 2018/7/2.

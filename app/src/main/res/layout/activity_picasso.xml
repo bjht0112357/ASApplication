@@ -18,14 +18,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
-        />
+        tools:ignore="ContentDescription" />
     <ImageView
         android:layout_marginTop="10dp"
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
-        />
+        tools:ignore="ContentDescription" />
     <ImageView
         android:layout_marginTop="10dp"
         android:id="@+id/imageView3"
@@ -33,6 +33,6 @@
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"
-        />
+        tools:ignore="ContentDescription" />
 
 </LinearLayout>

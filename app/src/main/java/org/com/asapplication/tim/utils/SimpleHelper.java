@@ -1,4 +1,4 @@
-package com.tencent.qcloud.uipojo.utils;
+package org.com.asapplication.tim.utils;
 
 import android.annotation.SuppressLint;
 import android.os.Build;

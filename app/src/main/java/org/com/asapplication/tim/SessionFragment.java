@@ -12,6 +12,7 @@ import com.tencent.qcloud.uikit.business.session.view.wedgit.SessionClickListene
 import com.tencent.qcloud.uikit.common.BaseFragment;
 
 import org.com.asapplication.R;
+import org.com.asapplication.tim.chat.ChatActivity;
 
 /**
  * Created by valxehuang on 2018/7/17.
@@ -38,7 +39,6 @@ public class SessionFragment extends BaseFragment implements SessionClickListene
         sessionPanel.initDefault();
         // 这里设置会话列表点击的跳转逻辑，告诉添加完SessionPanel后会话被点击后该如何处理
         sessionPanel.setSessionClick(this);
-
     }
 
     @Override
@@ -46,10 +46,10 @@ public class SessionFragment extends BaseFragment implements SessionClickListene
         //此处为demo的实现逻辑，更根据会话类型跳转到相关界面，开发者可根据自己的应用场景灵活实现
         if (session.isGroup()) {
             //如果是群组，跳转到群聊界面
-//            ChatActivity.startGroupChat(getActivity(), session.getPeer());
+            ChatActivity.startGroupChat(getActivity(), session.getPeer());
         } else {
             //否则跳转到C2C单聊界面
-//            ChatActivity.startC2CChat(getActivity(), session.getPeer());
+            ChatActivity.startC2CChat(getActivity(), session.getPeer());
 
         }
     }
