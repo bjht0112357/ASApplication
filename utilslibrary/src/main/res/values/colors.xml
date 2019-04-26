@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    
+    <color name="default_selector_selected">#66ededed</color>
+    <color name="default_selector_deep_selected">#33000000</color>
+
+    <color name="material_blue_500">#009688</color>
+    <color name="material_gray">#e0e0e0</color>
+    <color name="material_blue">#33b5e5</color>
+
+    <color name="rippelColor">#FFFFFF</color>
+</resources>

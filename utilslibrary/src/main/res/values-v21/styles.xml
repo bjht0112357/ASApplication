@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- customize the color palette -->
+        <item name="colorPrimary">@color/material_blue_500</item>
+        <item name="colorPrimaryDark">@color/material_gray</item>
+        <item name="colorAccent">@color/material_blue</item>
+
+        <item name="android:statusBarColor">@color/transparent</item>
+    </style>
+
+</resources>
