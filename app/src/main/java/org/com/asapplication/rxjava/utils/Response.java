@@ -27,7 +27,7 @@ public abstract class Response<T> extends DisposableObserver<T> {
 
         if (!isNetworkConnected()) {
             Toast.makeText(MyApplication.getInstance().getApplicationContext(), "当前网络不可用，请检查网络情况", Toast.LENGTH_SHORT).show();
-            return;
+//            return;
         }
     }
 
@@ -45,6 +45,7 @@ public abstract class Response<T> extends DisposableObserver<T> {
             //将Throwable 和 未知错误的status code返回
             onError(new ExceptionHandle.ResponeThrowable(e,ExceptionHandle.UNKNOWN).getMessage());
         }
+
     }
     public abstract void onError(String error);
     public abstract void onResponse(T t);

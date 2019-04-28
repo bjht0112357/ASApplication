@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import org.com.asapplication.animation.FrameAnimationActivity;
 import org.com.asapplication.myservice.TestServiceActivity;
+import org.com.asapplication.rxjava.RxtestActivity;
 import org.com.asapplication.tim.LoginActivity;
 
 import butterknife.BindView;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tvFrameAnimation;
     @BindView(R.id.tvLoginTim)
     TextView tvLoginTim;
+    @BindView(R.id.tvCache)
+    TextView tvCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         tvService.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, TestServiceActivity.class)));
         tvFrameAnimation.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, FrameAnimationActivity.class)));
         tvLoginTim.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
+        tvCache.setOnClickListener(v->startActivity(new Intent(MainActivity.this, RxtestActivity.class)));
 //        tvLoginTim.setOnClickListener(v -> AppUtils.copy(getApplication(),"测试复制"));
     }
 }

@@ -89,7 +89,7 @@ public class RxtestActivity extends AppCompatActivity {
 //        isEmpty();
 //        amb();
 /*===========条件操作符==========*/
-
+        getNetworkData();
 
     }
 
