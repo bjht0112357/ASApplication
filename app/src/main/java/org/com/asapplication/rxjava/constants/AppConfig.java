@@ -10,6 +10,7 @@ public class AppConfig {
     /**
      * 服务器网络ip端口地址
      */
-    public static final String BASE_URL = "http://fy.iciba.com/"; //服务器地址
+//    public static final String BASE_URL = "http://fy.iciba.com/"; //服务器地址
+    public static final String BASE_URL = "http://gank.io/api/"; //服务器地址
 }
 

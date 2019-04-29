@@ -1,5 +1,6 @@
 package org.com.asapplication.rxjava.network;
 
+import org.com.asapplication.rxjava.bean.GirlBean;
 import org.com.asapplication.rxjava.bean.Translation;
 import org.com.asapplication.rxjava.bean.User;
 
@@ -24,4 +25,6 @@ public interface ApiService {
     //GET请求
     @GET("ajax.php")
     Observable<Translation> getMessage(@Query("a") String a, @Query("f") String f, @Query("t") String t, @Query("w") String w);
+    @GET("random/data/福利/1")
+    Observable<GirlBean> getMeiZhi();
 }

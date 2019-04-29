@@ -3,14 +3,14 @@ package org.com.asapplication.rxjava;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import org.com.asapplication.R;
 import org.com.asapplication.apputils.AppLogger;
+import org.com.asapplication.rxjava.bean.GirlBean;
 import org.com.asapplication.rxjava.bean.Translation;
-import org.com.asapplication.rxjava.network.ApiLifecycleRequest;
 import org.com.asapplication.rxjava.network.ApiRequest;
-import org.com.asapplication.rxjava.utils.Response;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +40,8 @@ public class RxtestActivity extends AppCompatActivity {
 
     @BindView(R.id.tvOut)
     TextView tvOut;
+    @BindView(R.id.btnTestCache)
+    TextView btnTestCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,8 @@ public class RxtestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rxtest);
         ButterKnife.bind(this);
         setTitle("RxtestActivity");
-         //rxjava2 官方文档
+
+        //rxjava2 官方文档
         //https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Combining-Observables.html
 
 
@@ -63,22 +66,22 @@ public class RxtestActivity extends AppCompatActivity {
 //        intervalRange();
 //        scan();
 //        reduce();
-/*===========组合操作符==========*/
+        /*===========组合操作符==========*/
 //        zip();
 //        merge();
 //        concat();
 //        startWith();
 //        switchOnNext();
-/*===========组合操作符==========*/
-/*===========过滤操作符==========*/
+        /*===========组合操作符==========*/
+        /*===========过滤操作符==========*/
 //        filter();
 //        distinct();
 //        skip();
 //        element();
 //        take();
 //        sample();
-/*===========过滤操作符==========*/
-/*===========条件操作符==========*/
+        /*===========过滤操作符==========*/
+        /*===========条件操作符==========*/
 //        all();
 //        takeUntil();
 //        takeWhile();
@@ -88,8 +91,15 @@ public class RxtestActivity extends AppCompatActivity {
 //        contains();
 //        isEmpty();
 //        amb();
-/*===========条件操作符==========*/
-        getNetworkData();
+        /*===========条件操作符==========*/
+        btnTestCache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvOut.setText("");
+                getNetworkData();
+            }
+        });
+
 
     }
 
@@ -97,8 +107,8 @@ public class RxtestActivity extends AppCompatActivity {
      * 在源Observable发射的数据前插入另一个Observable发射的数据
      */
     private void startWith() {
-       Observable observable1=Observable.just(4,5,6,8);
-       Observable observable2=Observable.just("one","two");
+        Observable observable1 = Observable.just(4, 5, 6, 8);
+        Observable observable2 = Observable.just("one", "two");
         observable1.startWith(observable2)
                 .doOnNext(new Consumer() {
                     @Override
@@ -221,8 +231,8 @@ public class RxtestActivity extends AppCompatActivity {
     /**
      * 判断发送的事件中是否包含某个元素，有则返回true
      */
-    private void contains(){
-        Observable.just("one","two").contains("two")
+    private void contains() {
+        Observable.just("one", "two").contains("two")
                 .doOnEvent(new BiConsumer<Boolean, Throwable>() {
                     @Override
                     public void accept(Boolean aBoolean, Throwable throwable) {
@@ -234,15 +244,15 @@ public class RxtestActivity extends AppCompatActivity {
     /**
      * 判断Observable事件序列是否为空
      */
-    private void isEmpty(){
-        Observable.create(new ObservableOnSubscribe < Integer > () {
+    private void isEmpty() {
+        Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter < Integer > e) {
-                    //有e.onNext(...);结果为false 否则为true
+            public void subscribe(ObservableEmitter<Integer> e) {
+                //有e.onNext(...);结果为false 否则为true
 //                    e.onNext(1);
-                    e.onComplete();
-                  }
-                 })
+                e.onComplete();
+            }
+        })
                 .isEmpty()
                 .doOnEvent(new BiConsumer<Boolean, Throwable>() {
                     @Override
@@ -256,11 +266,11 @@ public class RxtestActivity extends AppCompatActivity {
     /**
      * amb() 要传入一个 Observable 集合，但是只会发送最先发送事件的 Observable 中的事件，其余 Observable 将会被丢弃。
      */
-    private void amb(){
+    private void amb() {
         List<Observable<Long>> list = new ArrayList<>();
-        list.add(Observable.intervalRange(5,3,5,1,TimeUnit.SECONDS));
+        list.add(Observable.intervalRange(5, 3, 5, 1, TimeUnit.SECONDS));
         //initialdelay 3先触发 所以只发送以下的 Observable 其他丢弃
-        list.add(Observable.intervalRange(1,3,3,1,TimeUnit.SECONDS));
+        list.add(Observable.intervalRange(1, 3, 3, 1, TimeUnit.SECONDS));
         Observable.amb(list)
                 .doOnNext(new Consumer<Long>() {
                     @Override
@@ -595,9 +605,9 @@ public class RxtestActivity extends AppCompatActivity {
      */
     private void merge() {
         //上游水管第一个事件
-        Observable<Long> observable1 = Observable.intervalRange(1,5,300,100,TimeUnit.MILLISECONDS);
+        Observable<Long> observable1 = Observable.intervalRange(1, 5, 300, 100, TimeUnit.MILLISECONDS);
         //上游水管第二个事件
-        Observable<Long> observable2 =Observable.intervalRange(5,5,100,200,TimeUnit.MILLISECONDS);
+        Observable<Long> observable2 = Observable.intervalRange(5, 5, 100, 200, TimeUnit.MILLISECONDS);
         //事件
         Observable<Long> merge = Observable.merge(observable1, observable2);
         merge.subscribe(new DisposableObserver<Long>() {
@@ -621,9 +631,9 @@ public class RxtestActivity extends AppCompatActivity {
     /**
      * ???
      */
-    private void switchOnNext(){
+    private void switchOnNext() {
         //https://blog.csdn.net/weixin_36709064/article/details/82919785#33%20RxBusBindingTest
-        Flowable sourceFlowable = Flowable.just(Flowable.just(8,10, 11),Flowable.just(5,10, 11), Flowable.just(10,20, 30));
+        Flowable sourceFlowable = Flowable.just(Flowable.just(8, 10, 11), Flowable.just(5, 10, 11), Flowable.just(10, 20, 30));
         Flowable.switchOnNext(sourceFlowable).subscribe(new Consumer<Integer>() {
             @Override
             public void accept(Integer value) {
@@ -640,7 +650,8 @@ public class RxtestActivity extends AppCompatActivity {
                 })
                 .subscribe();
     }
-  private void join(){
+
+    private void join() {
 //      String[] args1 = new String[]{"张欣1", "张欣2", "张欣3", "张欣4", "zhangxin5"};
 //      String[] args2 = new String[]{"春晓1", "春晓2", "春晓3", "春晓4"};
 //      Integer[] args3 = new Integer[]{1, 2, 3, 4, 5, 6};
@@ -663,7 +674,8 @@ public class RxtestActivity extends AppCompatActivity {
 //              return null;
 //          }
 //      });
-  }
+    }
+
     /**
      * concat操作符组合多个被观察者一起发送数据，合并后 按发送顺序串行执行
      *
@@ -716,11 +728,12 @@ public class RxtestActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * 与scan()操作符类似，作用是将数据以一定的逻辑聚合起来，这两个的区别在于scan()没处理一次数据将会发送一个事件给观察者，
      * 但是reduce()会将所有数据聚合在一起之后才会发送给观察者，还有一点区别就是scan的返回值是Observable
      */
-    private void reduce(){
+    private void reduce() {
         Observable.just(1, 2, 3, 4)//创建了一个有4个数字的被观察者
                 .reduce(new BiFunction<Integer, Integer, Integer>() {
                     @Override
@@ -736,6 +749,7 @@ public class RxtestActivity extends AppCompatActivity {
                 })
                 .subscribe();
     }
+
     private void ablObserver() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
@@ -791,15 +805,36 @@ public class RxtestActivity extends AppCompatActivity {
     }
 
     private void getNetworkData() {
-        ApiLifecycleRequest.getInstance().getMessage(this,"fy", "auto", "auto", "hello%20world", new Response<Translation>() {
-            @Override
-            public void onError(String error) {
-            }
+//        ApiLifecycleRequest.getInstance().getMessage(this,"fy", "auto", "auto", "hello%20world", new Response<Translation>() {
+//            @Override
+//            public void onError(String error) {
+//            }
+//
+//            @Override
+//            public void onResponse(Translation translation) {
+//                tvOut.setText(translation.getContent().getOut());
+//            }
+//        });
+        ApiRequest.getAppService().getMeiZhi().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<GirlBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
 
-            @Override
-            public void onResponse(Translation translation) {
-                tvOut.setText(translation.getContent().getOut());
-            }
-        });
+                    @Override
+                    public void onNext(GirlBean girlBean) {
+                        tvOut.setText(girlBean.getResults().get(0).getUrl());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

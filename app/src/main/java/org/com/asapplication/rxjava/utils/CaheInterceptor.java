@@ -28,8 +28,8 @@ public class CaheInterceptor implements Interceptor {
         Request request = chain.request();
         if (NetworkUtils.isNetworkAvailable(context)) {
             Response response = chain.proceed(request);
-            // read from cache for 0 s  有网络不会使用缓存数据
-            int maxAge = 600;
+            //   有网络maxAge内使用缓存数据
+            int maxAge = 10;
             return response.newBuilder()
                     .removeHeader("Pragma")
                     .removeHeader("Cache-Control")
@@ -43,11 +43,11 @@ public class CaheInterceptor implements Interceptor {
             Response response = chain.proceed(request);
             //set cahe times ; value is useless at all !
 //            int maxStale = 60;
-            int maxStale = 60 * 60 * 24 * 3;
+            int maxAge = 60 * 60 * 24 * 3;
             return response.newBuilder()
                     .removeHeader("Pragma")
                     .removeHeader("Cache-Control")
-                    .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                    .header("Cache-Control", "public, max-age=" + maxAge)
                     .build();
         }
     }
